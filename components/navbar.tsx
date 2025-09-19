@@ -80,24 +80,24 @@ export function NavBar({ items, className, logo, logoImage, isEditMode, onEditMe
       className={cn(
         // 🎯 네비게이션 바 위치 설정
         // 모바일과 데스크톱 모두 상단에 고정
-        "fixed top-6 left-1/2 -translate-x-1/2 z-50",
+        "fixed top-4 inset-x-4 z-50 translate-x-0 md:top-6 md:inset-x-auto md:left-1/2 md:-translate-x-1/2",
         className,
       )}
     >
       {/* 네비게이션 바 컨테이너 */}
       <div className={cn(
         // 🎨 네비게이션 바 스타일
-        "flex items-center gap-3",
+        "flex w-full items-center justify-center gap-2 flex-wrap md:w-auto md:flex-nowrap md:gap-3",
         // 배경색: bg-background/80 (80% 불투명도)
         // 테두리: border-border
         // 블러 효과: backdrop-blur-lg
         // 모서리: rounded-full (완전 둥글게)
         // 그림자: shadow-lg
-        "bg-background/80 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg"
+        "bg-background/80 border border-border backdrop-blur-lg py-1 px-2 md:px-4 rounded-full shadow-lg"
       )}>
         {/* 로고 영역 (있을 경우) */}
         {(logo || logoImage) && (
-          <div className="px-4 py-1 border-r border-border/50">
+          <div className="flex-shrink-0 px-3 md:px-4 py-1 md:border-r md:border-border/50">
             {logoImage ? (
               <img 
                 src={logoImage} 
@@ -145,7 +145,7 @@ export function NavBar({ items, className, logo, logoImage, isEditMode, onEditMe
               }}
               className={cn(
                 // 🔘 버튼 기본 스타일
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                "relative flex flex-shrink-0 items-center justify-center cursor-pointer text-sm font-semibold px-3 md:px-6 py-2 rounded-full transition-colors",
                 // 비활성 상태: text-foreground/80
                 // 호버 상태: hover:text-primary
                 "text-foreground/80 hover:text-primary",
