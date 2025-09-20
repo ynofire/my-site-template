@@ -11,7 +11,7 @@ const metadataInfo = getMetadata()
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: metadataInfo.siteTitle,
-  description: "창의적인 아이디어로 웹 경험을 디자인합니다.",
+  description: metadataInfo.description,
   keywords: ["포트폴리오", "개발자", "프론트엔드", "웹개발"],
   authors: [{ name: "당신의 이름" }],
   openGraph: {

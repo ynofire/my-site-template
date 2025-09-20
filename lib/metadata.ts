@@ -6,7 +6,7 @@ export function getMetadata() {
   const defaultInfo = {
     name: "당신의 이름",
     title: "프론트엔드 개발자",
-    description: "창의적인 아이디어로 웹 경험을 디자인합니다.",
+    description: defaultConfig.siteDescription, // header의 defaultConfig에서 가져오기
     profileImage: "",
     siteTitle: defaultConfig.siteTitle, // header의 defaultConfig에서 가져오기
   }

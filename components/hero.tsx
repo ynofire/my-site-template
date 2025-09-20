@@ -41,13 +41,13 @@ export function Hero() {
     title: "프론트엔드 개발자",
     description: "창의적인 아이디어로 웹 경험을 디자인합니다.",
     profileImage: "",
-    background: {"image":"","video":"","color":"","opacity":0.1},
+    backgroundImage: "",
+    backgroundVideo: "",
+    backgroundOpacity: 0.1,
     projectButton: "프로젝트 보기"
   }
 
-  const [backgroundData, setBackgroundData] = useState(
-    defaultInfo.background
-  )
+  const [backgroundData, setBackgroundData] = useState<{ image: string; video: string; color: string; opacity: number } | null>(null)
   const [heroInfo, setHeroInfo] = useState(defaultInfo)
   const [socialLinks, setSocialLinks] = useState(defaultSocialLinks)
   const [showSocialEditor, setShowSocialEditor] = useState(false)
@@ -58,10 +58,7 @@ export function Hero() {
     const savedData = getData('hero-info') as typeof defaultInfo | null
     if (savedData) {
       setHeroInfo({ ...defaultInfo, ...savedData })
-      // background 데이터가 있으면 설정
-      if (savedData.background) {
-        setBackgroundData(savedData.background)
-      }
+      // background 데이터가 있으면 설정 (savedData에는 background 필드가 없음)
     }
     
     const savedSocial = getData('hero-social-links') as { name: string; icon: string; url: string }[] | null
@@ -76,11 +73,10 @@ export function Hero() {
   }, [isEditMode]) // isEditMode가 변경될 때마다 데이터 다시 로드
 
   const updateHeroInfo = (key: string, value: string) => {
-    // background 필드를 유지하면서 업데이트
-    const newInfo = { 
-      ...heroInfo, 
-      [key]: value,
-      background: heroInfo.background || backgroundData 
+    // 업데이트
+    const newInfo = {
+      ...heroInfo,
+      [key]: value
     }
     setHeroInfo(newInfo)
     saveData('hero-info', newInfo)
@@ -146,12 +142,18 @@ export function Hero() {
 
   return (
     <EditableBackground
-      image={backgroundData.image}
-      video={backgroundData.video}
-      color={backgroundData.color}
-      opacity={backgroundData.opacity}
+      image={backgroundData?.image || ""}
+      video={backgroundData?.video || ""}
+      color={backgroundData?.color || ""}
+      opacity={backgroundData?.opacity || 0.1}
       onChange={(data) => {
-        const newData = { ...backgroundData, ...data }
+        const newData = {
+          image: backgroundData?.image || "",
+          video: backgroundData?.video || "",
+          color: backgroundData?.color || "",
+          opacity: backgroundData?.opacity || 0.1,
+          ...data
+        }
         setBackgroundData(newData)
         saveData('hero-background', newData)
         
@@ -404,9 +406,9 @@ export function Hero() {
                       title: heroInfo.title,
                       description: heroInfo.description,
                       profileImage: heroInfo.profileImage,
-                      backgroundImage: backgroundData.image,
-                      backgroundVideo: backgroundData.video,
-                      backgroundOpacity: backgroundData.opacity,
+                      backgroundImage: backgroundData?.image || "",
+                      backgroundVideo: backgroundData?.video || "",
+                      backgroundOpacity: backgroundData?.opacity || 0.1,
                       projectButton: heroInfo.projectButton,
                     }
                     

@@ -25,13 +25,14 @@ const ICON_MAP = {
 
 // 기본 데이터 (파일에는 문자열로 저장되지만 여기서는 컴포넌트로 변환)
 export const defaultConfig = {
-  logo: "포트폴리오",
-  logoImage: "",
-  showNavBar: true,
-  showThemeToggle: true,
-  items: [{"name":"Home","url":"#hero","icon":"Home","show":true},{"name":"About","url":"#about","icon":"User","show":true},{"name":"Projects","url":"#projects","icon":"Briefcase","show":true},{"name":"Contact","url":"#contact","icon":"Mail","show":true},{"name":"갤러리","url":"#gallery","icon":"Camera","show":false},{"name":"블로그","url":"#blog","icon":"Book","show":false}],
-  siteTitle: "나의 포트폴리오"
-}
+    logo: "포트폴리오",
+    logoImage: "",
+    showNavBar: true,
+    showThemeToggle: true,
+    items: [{"name":"Home","url":"#hero","icon":"Home","show":true},{"name":"About","url":"#about","icon":"User","show":true},{"name":"Projects","url":"#projects","icon":"Briefcase","show":true},{"name":"Contact","url":"#contact","icon":"Mail","show":true},{"name":"갤러리","url":"#gallery","icon":"Camera","show":false},{"name":"블로그","url":"#blog","icon":"Book","show":false}],
+    siteTitle: "My portfolio",
+    siteDescription: "창의적인 아이디어로 웹 경험을 디자인합니다!"
+  }
 
 export function Header() {
   const { getData, saveData, isEditMode, saveToFile, saveFieldToFile } = useInlineEditor()
@@ -48,6 +49,7 @@ export function Header() {
   })
   const [showEditModal, setShowEditModal] = useState(false)
   const [siteTitle, setSiteTitle] = useState(defaultConfig.siteTitle)
+  const [siteDescription, setSiteDescription] = useState(defaultConfig.siteDescription)
   
   // localStorage에서 데이터 로드
   useEffect(() => {
@@ -96,11 +98,16 @@ export function Header() {
     const newConfig = { ...navConfig, [key]: value }
     setNavConfig(newConfig)
     
-    // 사이트 제목도 함께 업데이트
+    // 사이트 제목과 디스크립션 업데이트
     if (key === 'siteTitle' && typeof value === 'string') {
       setSiteTitle(value)
       document.title = value
       localStorage.setItem('portfolio-site-title', value)
+    }
+
+    if (key === 'siteDescription' && typeof value === 'string') {
+      setSiteDescription(value)
+      localStorage.setItem('portfolio-site-description', value)
     }
     
     // 저장할 때 아이콘을 문자열로 변환
@@ -211,6 +218,19 @@ export function Header() {
                     placeholder="나의 포트폴리오"
                   />
                 </div>
+                <div>
+                  <label className="text-sm text-muted-foreground">사이트 설명</label>
+                  <input
+                    type="text"
+                    value={siteDescription}
+                    onChange={(e) => {
+                      setSiteDescription(e.target.value)
+                      updateNavConfig('siteDescription', e.target.value)
+                    }}
+                    className="w-full px-3 py-2 border rounded-lg bg-background"
+                    placeholder="창의적인 아이디어로 웹 경험을 디자인합니다."
+                  />
+                </div>
               </div>
             </div>
             
@@ -265,6 +285,7 @@ export function Header() {
                   const configToSave = {
                     ...navConfig,
                     siteTitle: siteTitle, // 실제 입력된 siteTitle 변수 사용
+                    siteDescription: siteDescription, // 실제 입력된 siteDescription 변수 사용
                     items: navConfig.items.map((item) => ({
                       ...item,
                       icon: typeof item.icon === 'string'
@@ -279,6 +300,7 @@ export function Header() {
                   if (success) {
                     saveData('nav-config', configToSave)
                     localStorage.setItem('portfolio-site-title', siteTitle)
+                    localStorage.setItem('portfolio-site-description', siteDescription)
                     document.title = siteTitle // 저장 후 document.title 다시 설정
                     alert('✅ 네비게이션 설정이 파일에 저장되었습니다!')
                     setShowEditModal(false)
