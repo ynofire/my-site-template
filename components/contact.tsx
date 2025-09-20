@@ -119,7 +119,9 @@ export function Contact() {
 
   // QR 코드에 포함할 내용 결정
   const generateVCard = () => {
-    const qrContent = contactInfo.qrContent || ['name', 'phone', 'email']
+    const qrContent = (contactInfo.qrContent && contactInfo.qrContent.length > 0)
+      ? contactInfo.qrContent
+      : ['name', 'phone', 'email']
     let vCard = 'BEGIN:VCARD\nVERSION:3.0\n'
     
     // 이름 (필수) - 갤럭시는 TITLE 필드 지원 안 함, 이름에 직책 포함
