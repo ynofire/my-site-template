@@ -14,6 +14,12 @@
 
 <br />
 
+## 📺 강의 영상
+
+- [fork 후 편집 및 배포 강의](https://www.youtube.com/watch?v=U6zL8qittGk)
+
+<br />
+
 ## ✨ 주요 기능
 
 ### 🎯 **인라인 편집 시스템**
@@ -94,35 +100,60 @@ npm run dev
 ## 📁 프로젝트 구조
 
 ```
-vibecoding/
-├── app/                    # Next.js App Router
-│   ├── api/               # API 엔드포인트
-│   ├── layout.tsx         # 루트 레이아웃
-│   └── page.tsx           # 메인 페이지
-│
-├── components/            
-│   ├── editable/          # 인라인 편집 컴포넌트
-│   │   ├── editable-text.tsx
-│   │   ├── editable-media.tsx
+vibeCoding/
+├── app/
+│   ├── api/
+│   │   ├── delete-image/
+│   │   ├── og-image/
+│   │   ├── update-component/
+│   │   ├── update-field/
+│   │   ├── upload-image/
+│   │   └── upload-video/
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── safelist.css
+├── components/
+│   ├── editable/
 │   │   ├── editable-background.tsx
-│   │   └── editable-icon.tsx
-│   │
-│   ├── ui/                # UI 컴포넌트
-│   ├── hero.tsx           # 히어로 섹션
-│   ├── about.tsx          # 소개 섹션
-│   ├── projects.tsx       # 프로젝트 섹션
-│   ├── contact.tsx        # 연락처 섹션
-│   ├── header.tsx         # 헤더
-│   ├── navbar.tsx         # 네비게이션
-│   └── footer.tsx         # 푸터
-│
-├── contexts/              
-│   └── inline-editor-context.tsx  # 편집 상태 관리
-│
-├── lib/                   # 유틸리티
-├── hooks/                 # 커스텀 훅
-└── public/               
-    └── uploads/           # 업로드된 파일
+│   │   ├── editable-icon.tsx
+│   │   ├── editable-list.tsx
+│   │   ├── editable-media.tsx
+│   │   └── editable-text.tsx
+│   ├── ui/
+│   │   ├── button.tsx
+│   │   ├── card.tsx
+│   │   ├── toast.tsx
+│   │   ├── toaster.tsx
+│   │   └── use-toast.ts
+│   ├── about.tsx
+│   ├── contact.tsx
+│   ├── footer.tsx
+│   ├── global-save-button.tsx
+│   ├── header.tsx
+│   ├── hero.tsx
+│   ├── navbar.tsx
+│   ├── projects.tsx
+│   ├── save-field-button.tsx
+│   ├── save-to-file-button.tsx
+│   ├── site-title.tsx
+│   ├── theme-provider.tsx
+│   └── theme-toggle.tsx
+├── contexts/
+│   └── inline-editor-context.tsx
+├── hooks/
+│   └── use-toast.ts
+├── lib/
+│   ├── cleanup-storage.ts
+│   ├── constants.ts
+│   ├── metadata.ts
+│   ├── reset-images.ts
+│   └── utils.ts
+├── public/
+│   └── uploads/
+├── components.json
+├── package.json
+└── tsconfig.json
 ```
 
 <br />
