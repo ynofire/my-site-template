@@ -36,10 +36,10 @@ export function Hero() {
   const defaultSocialLinks = [{"name":"Instagram","icon":"instagram","url":"https://instagram.com/username"},{"name":"YouTube","icon":"youtube","url":"https://youtube.com/@username"}]
   
   const defaultInfo = {
-    greeting: "마케팅의 나라에 오신 것을 환영합니다.",
-    name: "당신의 이름",
-    title: "프론트엔드 개발자",
-    description: "창의적인 아이디어로 웹 경험을 디자인합니다.",
+    greeting: "자기소개의 끝판대장!",
+    name: "김경화",
+    title: "퍼스널 브랜딩 마스터",
+    description: "당신을 확실하게 표현할 수 있게!",
     profileImage: "",
     backgroundImage: "",
     backgroundVideo: "",
